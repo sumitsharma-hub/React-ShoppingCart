@@ -1,16 +1,7 @@
 import React from 'react'
 
 class CartItem extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            price: 990,
-            title: 'phone',
-            qty: 1,
-            img: ''
-        }
 
-    }
 
     increseQuantity = () => {
         this.setState((prevState) => {
@@ -36,7 +27,7 @@ class CartItem extends React.Component {
         ))
     }
     render() {
-        const { price, title, qty } = this.state;
+        const { price, title, qty } = this.props.items;
         return (
             <div className="cart-item">
                 <div className="left-block">
@@ -47,13 +38,13 @@ class CartItem extends React.Component {
                     <div style={{ fontSize: 15, color: 'red' }}>Rs {price}</div>
                     <div style={{ fontSize: 15, color: 'red' }}>Qty:{qty}</div>
                     <div className="cart-item-actions">
-                        <img src="https://www.flaticon.com/svg/vstatic/svg/992/992683.svg?token=exp=1612632954~hmac=56d33c5fafbf03cfc0bdfebc7a35838b"
+                        <img src="https://www.flaticon.com/svg/vstatic/svg/1828/1828926.svg?token=exp=1612723631~hmac=cb5e1260b3221ad61b8ddbc3a3477c4e"
                             alt="increase"
                             className="action-icons"
                             onClick={this.increseQuantity} />
-                        <img src="https://www.flaticon.com/svg/vstatic/svg/992/992651.svg?token=exp=1612632986~hmac=c955a307b00c380756e332c52a1f58b2" alt="decrease" className="action-icons"
+                        <img src="https://www.flaticon.com/svg/vstatic/svg/992/992683.svg?token=exp=1612723690~hmac=f3ee801afd3e602376f1fa4373337766" alt="decrease" className="action-icons"
                             onClick={this.decreaseQuantity} />
-                        <img src="https://www.flaticon.com/svg/vstatic/svg/1214/1214428.svg?token=exp=1612633039~hmac=4eec62700e9d6ece3480a58729be4a78" alt="delete" className="action-icons"
+                        <img src="https://www.flaticon.com/svg/vstatic/svg/1214/1214428.svg?token=exp=1612723752~hmac=d1a01f1d5a3857330867886be9cc191a" alt="delete" className="action-icons"
                             onClick={this.deleteQuantity} />
                     </div>
                 </div>
