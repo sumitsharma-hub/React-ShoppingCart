@@ -52,6 +52,13 @@ export default class Cart extends Component {
             products: products
         })
     }
+    handleDeleteproduct = (id) => {
+        const { products } = this.state;
+        const items = products.filter((item) => item.id != id);
+        this.setState({
+            products: items
+        })
+    }
 
 
     render() {
@@ -62,7 +69,8 @@ export default class Cart extends Component {
                     return (
                         <CartItem items={items} key={items.id}
                             OnincreaseQuantity={this.handleIncreaseQuantity}
-                            OndecreaseQuantity={this.handleDecreaseQuantity} />
+                            OndecreaseQuantity={this.handleDecreaseQuantity}
+                            Ondeleteproduct={this.handleDeleteproduct} />
                     )
                 })}
             </div>
