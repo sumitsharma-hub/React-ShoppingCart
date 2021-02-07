@@ -31,13 +31,38 @@ export default class Cart extends Component {
         }
 
     }
+    //parent increasing the value of the qty by sending props.
+    handleIncreaseQuantity = (items) => {
+        const { products } = this.state;
+        const index = products.indexOf(items);
+        products[index].qty += 1;
+        this.setState({
+            products: products
+        })
+
+    }
+    handleDecreaseQuantity = (items) => {
+        const { products } = this.state;
+        const index = products.indexOf(items);
+        if (products[index].qty === 0) {
+            return;
+        }
+        products[index].qty -= 1;
+        this.setState({
+            products: products
+        })
+    }
+
+
     render() {
         const { products } = this.state;
         return (
             <div className="Cart">
                 {products.map((items) => {
                     return (
-                        <CartItem items={items} key={items.id} />
+                        <CartItem items={items} key={items.id}
+                            OnincreaseQuantity={this.handleIncreaseQuantity}
+                            OndecreaseQuantity={this.handleDecreaseQuantity} />
                     )
                 })}
             </div>
