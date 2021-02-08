@@ -1,79 +1,44 @@
 import React, { Component } from 'react'
 import CartItem from "./CartItem";
 
-export default class Cart extends Component {
-    constructor() {
-        super();
-        this.state = {
-            products: [
-                {
-                    price: 990,
-                    title: 'phone',
-                    qty: 2,
-                    img: '',
-                    id: 1
-                },
-                {
-                    price: 60000,
-                    title: 'Laptop',
-                    qty: 3,
-                    img: '',
-                    id: 2
-                },
-                {
-                    price: 10000,
-                    title: 'watch',
-                    qty: 5,
-                    img: '',
-                    id: 3
-                }
-            ]
-        }
+const Cart = (props) => {
+    const { products } = props;
+    // const gettotal = () => {
+    //     let total = 0;
+    //     products.forEach(counter => {
+    //         total += products.price
+    //     });
+    //     return total;
+    // }
 
-    }
-    //parent increasing the value of the qty by sending props.
-    handleIncreaseQuantity = (items) => {
-        const { products } = this.state;
-        const index = products.indexOf(items);
-        products[index].qty += 1;
-        this.setState({
-            products: products
-        })
+    return (
+        <div className="Cart">
+            {products.map((items) => {
+                return (
+                    <div>
 
-    }
-    handleDecreaseQuantity = (items) => {
-        const { products } = this.state;
-        const index = products.indexOf(items);
-        if (products[index].qty === 0) {
-            return;
-        }
-        products[index].qty -= 1;
-        this.setState({
-            products: products
-        })
-    }
-    handleDeleteproduct = (id) => {
-        const { products } = this.state;
-        const items = products.filter((item) => item.id != id);
-        this.setState({
-            products: items
-        })
-    }
+                        <CartItem
+                            items={items}
+                            key={items.id}
+                            OnincreaseQuantity={props.OnincreaseQuantity}
+                            OndecreaseQuantity={props.OndecreaseQuantity}
+                            Ondeleteproduct={props.Ondeleteproduct} />
 
+                    </div>
 
-    render() {
-        const { products } = this.state;
-        return (
-            <div className="Cart">
-                {products.map((items) => {
-                    return (
-                        <CartItem items={items} key={items.id}
-                            OnincreaseQuantity={this.handleIncreaseQuantity}
-                            OndecreaseQuantity={this.handleDecreaseQuantity}
-                            Ondeleteproduct={this.handleDeleteproduct} />
-                    )
-                })}
-            </div>
-        )
+                )
+            })}
+            <span className="total" style={styles.total}>Total RS.  {props.totalprice} </span>
+        </div>
+    )
+
+}
+const styles = {
+    total: {
+        marginLeft: 100,
+        textTransform: 'uppercase',
+        fontWeight: 800
+
     }
 }
+export default Cart;
