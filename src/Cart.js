@@ -28,7 +28,7 @@ const Cart = (props) => {
 
                 )
             })}
-            <span className="total" style={styles.total}>Total RS.  {props.totalprice} </span>
+            {/* <span className="total" style={styles.total}>Total RS.  {props.totalprice} </span> */}
         </div>
     )
 

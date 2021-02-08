@@ -72,8 +72,8 @@ class App extends React.Component {
   totalcounter = () => {
     const { products } = this.state;
     let total = 0;
-    products.forEach((counter) => {
-      total += counter.price
+    products.map((counter) => {
+      total = total + counter.qty * counter.price;
     })
     return total;
   }
@@ -91,7 +91,9 @@ class App extends React.Component {
           Ondeleteproduct={this.handleDeleteproduct}
           totalprice={this.totalcounter()}
         />
+        <div style={{ padding: 10, fontSize: 20 }}>TOTAL:{this.totalcounter()}</div>
       </div>
+
     );
   }
 }
